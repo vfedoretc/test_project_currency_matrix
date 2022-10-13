@@ -40,6 +40,7 @@ def Graf_way(abc_curr): #пути графов
             xy.append(xy[0])
             #print(xy)
             Graf_way.append(xy)
+
     #print(Graf_way)
     return Graf_way
 
@@ -68,10 +69,15 @@ def filter_procent(list_profit,procent): #исключение з неправе
     for lis in list_profit:
         if float(lis[1])>(1+(procent/100)):
             list_filt_profit.append(lis)
+    if len(list_filt_profit)<1:
+        return None
+
     return list_filt_profit
 
 def filter_first_coin ( list_profit, abc_curr): #исключение по первой монетке
     list_filt_profit = []
+    if list_profit == None:
+        return None
     for lis in list_profit:
         if lis[0][0] == abc_curr[0]:
             list_filt_profit.append(lis)
@@ -79,6 +85,8 @@ def filter_first_coin ( list_profit, abc_curr): #исключение по пе�
     return list_filt_profit
 
 def filter_out_put_coin (list_profit): #исключение максемум профит по количкству операцый
+    if list_profit == None:
+        return None
     list_filt_profit = []
     min_len=0
     max_profit=0
@@ -92,4 +100,6 @@ def filter_out_put_coin (list_profit): #исключение максемум п
     return list_filt_profit
 
 def filter_return (list_profit): #формат вывода
+    if list_profit == None:
+        return "No risk-free opportunities exist yielding over 1.00% profit"
     return ', '.join(list_profit[0])
